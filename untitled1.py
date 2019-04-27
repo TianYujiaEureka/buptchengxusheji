@@ -31,7 +31,7 @@ def main(inurl):
                     with open(path,'wb') as f:
                         f.write(d.content)
                         f.close()
-                        flag=1
+                        flag=1#成果下载新数据，就要更新目录
                         print("file saved successfully")
             else:
                 flag=1
@@ -41,8 +41,19 @@ def main(inurl):
         print("error connection")
     print(flag)
     try:
+        if flag==1:#成果下载，需要删除旧数据
+            with open('D:/homework/python/pydata/list.txt','r') as li1:  
+                removptr=li1.read()
+                print(removptr)
+                os.remove(removptr)
+                print("the outdate file is delete")
+        else:
+            print("the list already deleted")
+    except:
+        print('cannot delete')
+    try:
         if flag==1:
-            with open('D:/homework/python/pydata/list.txt','w+') as li:
+            with open('D:/homework/python/pydata/list.txt','w+') as li:  
                 li.write(str(path))
                 li.close
                 print("the list is update")
@@ -50,6 +61,7 @@ def main(inurl):
             print("the list already exist")
     except:
         print('cannot save')
+    
         
                 
 
