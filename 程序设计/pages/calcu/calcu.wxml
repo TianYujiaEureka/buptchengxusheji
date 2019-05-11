@@ -1,0 +1,47 @@
+<!-- 
+<view class="section1">
+  <view class="section__title1">原币种</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{nowarray}}">
+    <view class="picker">
+      当前选择：{{nowarray[index]}}
+    </view>
+</picker>
+</view>
+<view class="section2">
+  <view class="section__title2">目标币种</view>
+  <picker bindchange="bindPickerChange" value="{{indexw}}" range="{{willarray}}">
+    <view class="picker">
+      当前选择：{{willarray[indexw]}}
+    </view>
+  </picker>
+</view>
+-->
+<view class="section">
+  <view class="section__title">多列选择器</view>
+  <picker
+    mode="multiSelector"
+    bindchange="bindMultiPickerChange"
+    bindcolumnchange="bindMultiPickerColumnChange"
+    value="{{multiIndex}}"
+    range="{{multiArray}}"
+  >
+    <view class="picker">
+      当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}
+    </view>
+  </picker>
+</view>
+
+<view bindlongpress='calcutrans'>
+<view>{{transprice}}</view>
+</view>
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+ <view class="section">
+    <view class="section__title">input</view>
+    <input name="input" placeholder="please input here" />
+  </view>
+<view class="btn-area">
+    <button form-type="submit">Submit</button>
+    <button form-type="reset">Reset</button>
+  </view>
+</form>
