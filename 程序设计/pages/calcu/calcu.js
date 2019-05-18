@@ -71,7 +71,7 @@ Page({
     col2:1,
     inputmon:0,//reset时应当把本处也清零
     outputmon:0,
-    money:0//每次输入都存储
+    money:0,//每次输入都存储
    // disabled:"false"
     },
   bindMultiPickerChange(e) {
@@ -195,10 +195,41 @@ calcutrans:function(){//计算汇率
     transprice: this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
   })
 },  
-
-
+bindtest:function() {
+    var that=this
+    var jsonobj1
+    wx.request({ 
+    url: 'http://127.0.0.1:5000/orgid=' + this.data.objectMultiArray[1][this.data.col2].id + "&goalid=" + this.data.objectMultiArray[0][this.data.col1].id,     
+    method:'GET',         
+    header:{             
+      'content-type':'application/json' //默认值         
+    }, 
+    success:function(res){            
+      console.log(res.data); 
+      jsonobj1=res.data;
+    },         
+    fail:function(res){
+      console.log("失败");         
+    }     
+    }) 
+    var orgid, goalid, orgprice, goalprice
+    var jsonObj = eval('(' + jsonobj1 + ')');
+    for (var prop in jsonObj) {
+      //输出 key-value值
+      alert("jsonObj[" + prop + "]=" + jsonObj[prop]);
+    }},
+    // });
+    // --------------------- 
+    //   作者：gulv9461
+    // 来源：CSDN
+    // 原文：https://blog.csdn.net/gulv9461/article/details/78228243 
+    // 版权声明：本文为博主原创文章，转载请附上博文链接！
+// --------------------- 
+//       作者：qq_38391251 
+// 来源：CSDN 
+// 原文：https://blog.csdn.net/qq_38391251/article/details/80751619 
+//       版权声明：本文为博主原创文章，转载请附上博文链接！
 onReady: function() {
-
   // 页面渲染完成
 },
 onShow: function() {
