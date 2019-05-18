@@ -1,26 +1,32 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed May 15 21:45:11 2019
+Created on Sat May 18 16:31:32 2019
 
 @author: Eureka
 """
 
+from flask import Flask
+
 import sqlite3
 import json
+app = Flask(__name__)
+
+#@app.route('/')
+
 
 def dict_to_json(dict1,dict2):
     dicadd=dict(dict1,**dict2)  
+    print("dicadd",dicadd)
     json1=json.dumps(dicadd, sort_keys=True, separators=(',', ': '))#, indent=4,
     return json1
 #数据库相关
 def sqlread(orginid,goalinid):
     orid={'orgid':1}
     orid['orgid']=orginid
-    print(orid['orgid'])
+    print( orid['orgid'])
     ori={'orimon':1}
     goalid={'goaid':1}
     goalid['goaid']=goalinid
-    print(goalid['goaid'])
     goal={'goalmon':1}
     try:
         conn = sqlite3.connect('currency.db')
@@ -44,9 +50,14 @@ def sqlread(orginid,goalinid):
             print("fail")
     except:
         print("open the database failed")
-
     json1=dict_to_json(ori,goal)
     print(json1)
     return json1
 
-sqlread(2,5)
+@app.route('/orgid=<orgid>&goalid=<goalid>')
+def jsonreturnfun(orgid,goalid):
+    jsonreturn=sqlread(int(orgid),int(goalid))
+    return jsonreturn
+
+if __name__ == '__main__':
+    app.run(debug=1)
