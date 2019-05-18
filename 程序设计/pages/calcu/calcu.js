@@ -193,45 +193,74 @@ calmon:function(){
 calcutrans:function(){//计算汇率
   var that = this;
   console.log("calcu", this.data.objectMultiArray[1][this.data.col1].price)
+  // var transprice = this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
   this.setData({
-    // transprice: this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
-    transprice: this.data.goalmon / this.data.orimon
+    transprice: this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
+
   })
   console.log("transprice",this.data.transprice)
 },  
-
-bindtest:function() {
-    var that=this
-    //var jsonobj1
-    wx.request({ 
-    url: 'http://127.0.0.1:5000/orgid=' + this.data.objectMultiArray[1][this.data.col2].id + "&goalid=" + this.data.objectMultiArray[0][this.data.col1].id,     
-    method:'GET',         
-    header:{             
-      'content-type':'application/json' //默认值         
-    }, 
-    // success:function(res){            
-    //   console.log(res.data)
-    // },         
-    // fail:function(res){
-    //   console.log("失败");         
-    // }  
-    success:(res)=> {
-      console.log(res.data)
-      this.setData({
-        goalmon: res.data.goalmon,
-        orimon: res.data.orimon
-      })
-      console.log(this.data.goalmon)
-    },
-   
-    fail: (res)=> {
-      console.log("失败");
-    }  
-    }) 
-    },
+    
   
 onReady: function() {
   // 页面渲染完成
+
+  var that = this
+  //var jsonobj1
+  wx.request({
+    url: 'http://127.0.0.1:5000',
+    method: 'GET',
+    header: {
+      'content-type': 'application/json' //默认值         
+    }, 
+    success: (res) => {
+      console.log(res.data)
+      for (var i = 0; i < 6; i++)
+     { var up1 ="objectMultiArray[0]["+i+"].price";
+        var up2 = "objectMultiArray[1][" + i + "].price";
+        if(i==0) {      
+        this.setData({
+          [up1]:res.data.id0,
+          [up2]:res.data.id0
+                     })
+        }
+        else if(i==1) {
+        this.setData({
+          [up1]: res.data.id1,
+          [up2]: res.data.id1
+                     })
+       } 
+          else if (i == 2) {
+          this.setData({
+            [up1]: res.data.id2,
+            [up2]: res.data.id2
+          })
+        }
+        else if (i == 3) {
+          this.setData({
+            [up1]: res.data.id3,
+            [up2]: res.data.id3
+          })
+        }
+        else if (i == 4) {
+          this.setData({
+            [up1]: res.data.id4,
+            [up2]: res.data.id4
+          })
+        }
+        else if (i == 5) {
+          this.setData({
+            [up1]: res.data.id5,
+            [up2]: res.data.id5
+          })
+        }
+      }
+      console.log(this.data.objectMultiArray)
+    },
+    fail: (res) => {
+      console.log("失败");
+    }
+  }) 
 },
 onShow: function() {
   // 页面显示

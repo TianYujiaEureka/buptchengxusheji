@@ -1,21 +1,4 @@
-<!-- 
-<view class="section1">
-  <view class="section__title1">原币种</view>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{nowarray}}">
-    <view class="picker">
-      当前选择：{{nowarray[index]}}
-    </view>
-</picker>
-</view>
-<view class="section2">
-  <view class="section__title2">目标币种</view>
-  <picker bindchange="bindPickerChange" value="{{indexw}}" range="{{willarray}}">
-    <view class="picker">
-      当前选择：{{willarray[indexw]}}
-    </view>
-  </picker>
-</view>
--->
+
 <view class="section">
   <view class="section__title">请选择兑换的本币及外汇</view>
   <picker
@@ -30,7 +13,7 @@
     </view>
   </picker>
 </view>
-<view bindtap="bindtest" >确定</view>
+<view >确定</view>
 <view  bindtap='calcutrans'>
 <view>当前的货币间兑换价格为：{{transprice}}</view>
 </view>

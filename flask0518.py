@@ -14,20 +14,14 @@ app = Flask(__name__)
 #@app.route('/')
 
 
-def dict_to_json(dict1,dict2):
-    dicadd=dict(dict1,**dict2)  
-    print("dicadd",dicadd)
-    json1=json.dumps(dicadd, sort_keys=True, separators=(',', ': '))#, indent=4,
+def dict_to_json(dict1):
+    json1=json.dumps(dict1, sort_keys=True, separators=(',', ': '))#, indent=4,
     return json1
 #数据库相关
-def sqlread(orginid,goalinid):
-    orid={'orgid':1}
-    orid['orgid']=orginid
-    print( orid['orgid'])
-    ori={'orimon':1}
-    goalid={'goaid':1}
-    goalid['goaid']=goalinid
-    goal={'goalmon':1}
+def sqlread():
+    dict1={"id0":1,"id1":1,"id2":1,"id3":1,"id4":1,"id5":1}
+#    dict1={"0":1,"1":1,"2":1,"3":1,"4":1,"5":1}
+#    dict1={0:1,1:1,2:1,3:1,4:1,5:1}
     try:
         conn = sqlite3.connect('currency.db')
         c = conn.cursor()
@@ -40,23 +34,23 @@ def sqlread(orginid,goalinid):
                 print ("BUYCASH = ", row[1],"\n")
                 print ("Operation done successfully")
             #####################试图写逻辑################
-                if orid['orgid']==row[0]:
-                    ori['orimon']=row[1]
-                if goalid['goaid']==row[0]:
-                    goal['goalmon']=row[1]
+                if row[0] in range(0,4,1):
+#                    dict1[row[0]]=row[1]
+#                    dict1[str(row[0])]=row[1]
+                    dict1['id'+str(row[0])]=row[1]
             ###############################################
             conn.close()
         except:
             print("fail")
     except:
         print("open the database failed")
-    json1=dict_to_json(ori,goal)
+    json1=dict_to_json(dict1)
     print(json1)
     return json1
 
-@app.route('/orgid=<orgid>&goalid=<goalid>')
-def jsonreturnfun(orgid,goalid):
-    jsonreturn=sqlread(int(orgid),int(goalid))
+@app.route('/')
+def jsonreturnfun():
+    jsonreturn=sqlread()
     return jsonreturn
 
 if __name__ == '__main__':
