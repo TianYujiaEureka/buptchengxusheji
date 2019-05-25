@@ -9,24 +9,28 @@
     range="{{multiArray}}"
   >
     <view class="picker">
-      当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+      当前本币：{{multiArray[0][multiIndex[0]]}}
+    </view>
+    <view class="picker">
+      当前目的：{{multiArray[1][multiIndex[1]]}}
     </view>
   </picker>
 </view>
-<view >确定</view>
-<view  bindtap='calcutrans'>
-<view>当前的货币间兑换价格为：{{transprice}}</view>
+
+<view  class="transprice" bindtap='calcutrans'>
+<view>货币间兑换价格：{{transprice}}</view>
 </view>
 
 <form bindsubmit="formSubmit" bindreset="formReset">
  <view class="section">
     <view class="section__title">输入兑换金额</view>
-    <input name="input" type="number" bindinput="moneyInput" placeholder="小于10000的两位小数" />
+    <input name="input" type="number" class="numberin" bindinput="moneyInput" placeholder="小于10000的两位小数" />
   </view>
 <view class="btn-area">
     <button form-type="submit">Submit</button>
-    <button form-type="reset">Reset</button>
+    <button form-type="reset" > Reset</button>
   </view>
 </form>
 
-<button type="primary" size="default" bindtap="calmon"> 计算金额：{{outputmon}} </button>
+<button class="ifbutton" type="primary" size="default" disabled="{{disabled}}" bindtap="calmon" color="DarkSlateGray"> 计算金额：{{outputmon}} </button>
+<button bindtap="tochart" class="showchart" >点击前往外币兑人民币近期走势页</button>

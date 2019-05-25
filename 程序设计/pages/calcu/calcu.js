@@ -11,27 +11,27 @@ Page({
         {
           id: 1,
           name: '美元',
-          price:2
+          price:1
         },
         {
           id: 2,
           name: '日元',
-          price: 2
+          price: 1
         },
         {
           id: 3,
           name: '英镑',
-          price: 3
+          price: 1
         },
         {
           id: 4,
           name: '欧元',
-          price: 4
+          price: 1
         },
         {
           id: 5,
           name: '港币',
-          price: 3
+          price: 1
         }
       ], [
         {
@@ -47,22 +47,22 @@ Page({
         {
           id: 2,
           name: '日元',
-          price: 2
+          price: 1
         },
         {
           id: 3,
           name: '英镑',
-          price: 3
+          price: 1
         },
         {
           id: 4,
           name: '欧元',
-          price: 4
+          price: 1
         },
         {
           id: 5,
           name: '港币',
-          price: 3
+          price: 1
         }
     ]],
     multiIndex: [0, 0],
@@ -72,9 +72,7 @@ Page({
     inputmon:0,//reset时应当把本处也清零
     outputmon:0,
     money:0,//每次输入都存储
-    goalmon:1,
-    orimon:1
-   // disabled:"false"
+    disabled:true
     },
   bindMultiPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -104,9 +102,15 @@ Page({
   },
 //////////////////////////////////////////////
   formSubmit(e) {
-    console.log('form发生了submit事件，携带数据为：', this.data.money)
-    console.log('form发生了submit事件，携带数据为：', this.data.money)
 
+    console.log('form发生了submit事件，携带数据为：', this.data.money)
+    console.log('form发生了submit事件，携带数据为：', this.data.money)
+    if (this.data.money>0)
+    {
+      this.setData({ disabled: false})
+     
+    }
+    console.log(this.data.disabled)
     //var inputmon = e.detail.value
     this.setData({
       inputmon: this.data.money
@@ -185,22 +189,28 @@ calmon:function(){
   var money = this.data.inputmon * this.data.transprice//此处需要添加逻辑保证inputmon不是1才计算，其他时候alert
   console.log(" this.data.outputmon", money)  
   this.setData({
-    outputmon: money//此处有类或其他种类错误
+    outputmon: money.toFixed(2)//此处有类或其他种类错误
   })
   console.log(" this.data.outputmon", this.data.outputmon)
 },
 
 calcutrans:function(){//计算汇率
   var that = this;
-  console.log("calcu", this.data.objectMultiArray[1][this.data.col1].price)
-  // var transprice = this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
+  console.log("calcu2", this.data.objectMultiArray[1][this.data.col2].id)
+  console.log("calcu1", this.data.objectMultiArray[0][this.data.col1].id)
+  var transprice = this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
   this.setData({
-    transprice: this.data.objectMultiArray[1][this.data.col2].price / this.data.objectMultiArray[0][this.data.col1].price
-
+    transprice:transprice.toFixed(4)
   })
   console.log("transprice",this.data.transprice)
 },  
-    
+
+tochart:function(){
+  wx.navigateTo({
+    url: '../chart/chart'
+  })
+  console.log("to chart")
+},
   
 onReady: function() {
   // 页面渲染完成

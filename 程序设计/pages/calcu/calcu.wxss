@@ -1,0 +1,53 @@
+.section__title{
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  color: DarkSlateGray
+}
+.picker{
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  background-color:lightgreen;
+}
+.transprice{
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+  color: DarkSlateGray
+}
+.section{
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  justify-content: center
+}
+.numberin{
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx
+}
+.btn-area{
+  padding: 30rpx;
+  margin-top: 20rpx;
+  background-color: beige;
+  color: SlateGray;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center
+}
+.ifbutton{
+   width: 100%;
+  margin-top: 20rpx;
+  color: DarkSlateGray;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
