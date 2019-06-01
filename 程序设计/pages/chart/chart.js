@@ -7,20 +7,18 @@ function initChart(canvas, width, height) {
     width: width,
     height: height
   });
-  console.log(1);
   canvas.setChart(chart);
-  console.log(2);
+
   var option = {
     title: {
-      text: '外币兑人民币一周趋势',
+      text: '美元，欧元，英镑兑人民币一周走势',
       left: 'center'
     },
     color: ["#37A2DA", "#67E0E3", "#9FE6B8"],
     legend: {
-      data: ['美元', '日元', '英镑'],
+      data: ['美元','欧元', '英镑'],
       top: 50,
       left: 'center',
-      backgroundColor: 'white',
       z: 100
     },
     grid: {
@@ -39,6 +37,8 @@ function initChart(canvas, width, height) {
     yAxis: {
       x: 'center',
       type: 'value',
+      min:600,
+      max:900,
       splitLine: {
         lineStyle: {
           type: 'dashed'
@@ -46,28 +46,23 @@ function initChart(canvas, width, height) {
       }
       // show: false
     },
-    
     series: [{
       name: '美元',
-      id:'1',
       type: 'line',
       smooth: true,
-      data: [668, 668, 666, 668, 668,668,668]
+      data: [690.63, 691.05, 689.89, 691.01, 691.45, 690.19, 691.45]
     }, {
-      name: '日元',
-      id:'2',
+      name: '欧元',
       type: 'line',
       smooth: true,
-      data: [6, 6, 6, 6, 6, 6, 6]
+      data: [772.67,773.00,773.38,771.18,769.99,768.27,769.04]
     }, {
       name: '英镑',
-      id:'3',
       type: 'line',
       smooth: true,
-      data: [800, 800, 800, 800, 800, 800, 800]
+      data: [877.12, 878.16, 874.66, 874.04, 873.31, 870.15, 871.63]
     }]
   };
-  console.log(3),
   chart.setOption(option);
   return chart;
 }
@@ -88,6 +83,5 @@ Page({
   },
 
   onReady() {
-
   }
 });

@@ -107,7 +107,7 @@ Page({
     console.log('form发生了submit事件，携带数据为：', this.data.money)
     if (this.data.money>0)
     {
-      this.setData({ disabled: false})
+      this.setData({disabled: false})
      
     }
     console.log(this.data.disabled)
@@ -122,6 +122,7 @@ Page({
   },
   formReset() {
     console.log('form发生了reset事件')
+    this.setData({ disabled: true })
   },
   
   moneyInput:function(e) {
